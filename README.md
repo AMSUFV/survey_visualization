@@ -12,6 +12,7 @@ In the second section, participants were shown ruin-reconstruction image pairs a
 This survey was aimed at two different groups, one biased and one unbiased; the former was comprised of architecture professors and students who were briefed and knew about the project beforehand; the latter one was comprised of professors and students from other disciplines who knew nothing about the project.
 
 The survey was carried out using Google Forms. The results were exported as a csv file and transformed using pandas. The figures were made using matplotlib.
+<br>
 
 ### First section
 
@@ -65,6 +66,7 @@ plt.ylabel('Score', family='Times New Roman', style='italic')
 plt.show()
 ```
 </details>
+<br>
 
 ### Second section
 
@@ -93,10 +95,14 @@ plt.ylabel('Score', family='Times New Roman', style='italic')
 plt.show()
 ```
 </details>
+<br>
 
 ### Biased vs unbiased results
 
 ![alt text](images/biased_vs_unbiased.png)
+
+The biased group, on average, rated the first six questions higher than the unbiased one; this tendecy was inverted on the second part of the survey.
+<br>The biased group's rating decayed when being exposed to the original ruins accompanied by the AI's reconstruction, while the unbiased group's rating increased; this happened for every question.
 
 <details>
     <summary><b>Code:</b></summary>
@@ -117,12 +123,10 @@ plt.ylabel('Score', family='Times New Roman', style='italic')
 ```
 </details>
 
-<br>The biased group, on average, rated the first six questions higher than the unbiased one; this tendecy was inverted on the second part of the survey.
-<br>The biased group's rating decayed when being exposed to the original ruins accompanied by the AI's reconstruction, while the unbiased group's rating increased; this happened for every question.
+<br><br>
 
-### Apendix
-
-#### Source data
+### Apendix: source data
+<br>
 
 ##### Figure 1:
 
