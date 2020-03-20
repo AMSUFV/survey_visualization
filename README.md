@@ -25,30 +25,9 @@ Participants were asked the following questions:
 
 ![alt text](images/survey_results.png)
 
-### Second section
-
-Participants were asked the following questions:
-1. "Seeing the image pair, can you understand the reconstruction?"
-2. "Can you perceive any incoherences?"
-3. "Can you identify a coherent architectonical language in the reconstruction?"
-4. "Can you identify a concrete classical language in the reconstruction?"
-5. "Can you discern details in the reconstruction?"
-6. "Rate the image's resolution"
-
-![alt text](images/survey_results_2.png)
-
-### Biased vs unbiased results
-
-![alt text](images/biased_vs_unbiased.png)
-<br>The biased group, on average, rated the first six questions higher than the unbiased one; this tendecy was inverted on the second part of the survey.
-<br>The biased group's rating decayed when being exposed to the original ruins accompanied by the AI's reconstruction, while the unbiased group's rating increased; this happened for every question.
-
-### Apendix
-
-#### Code
-
-##### Figure 1:
-
+<details>
+    <summary><b>Code:</b></summary>
+    
 ```python
 pregs_plot = [f'pregunta_{x}' for x in range(6)]
 opts_plot = ['Colores', 'Directo', 'Reales']
@@ -85,9 +64,67 @@ plt.xticks(ticks=[x for x in range(2, 30, 5)], labels=[f'Q {x}' for x in range(1
 plt.ylabel('Score', family='Times New Roman', style='italic')
 plt.show()
 ```
+</details>
 
-Source data:
+### Second section
 
+Participants were asked the following questions:
+1. "Seeing the image pair, can you understand the reconstruction?"
+2. "Can you perceive any incoherences?"
+3. "Can you identify a coherent architectonical language in the reconstruction?"
+4. "Can you identify a concrete classical language in the reconstruction?"
+5. "Can you discern details in the reconstruction?"
+6. "Rate the image's resolution"
+
+![alt text](images/survey_results_2.png)
+
+<details>
+    <summary><b>Code:</b></summary>
+    
+```python
+box = plt.boxplot(list(survey_completa.values), patch_artist=True, widths=0.5)
+plt.setp(box['boxes'], color='white')
+plt.setp(box['boxes'], edgecolor='black')
+plt.setp(box['medians'], color='red')
+
+plt.xticks(ticks=[x for x in range(1, 7)], labels=[f'Q{x}' for x in range(1, 7)], family='Times New Roman', style='italic')
+plt.ylabel('Score', family='Times New Roman', style='italic')
+
+plt.show()
+```
+</details>
+
+### Biased vs unbiased results
+
+![alt text](images/biased_vs_unbiased.png)
+
+<details>
+    <summary><b>Code:</b></summary>
+
+```python
+colors = ['#bf8e8e',  # biased
+          '#979ec9']  # unbiased
+
+ticks = np.arange(1, len(total_preguntas*3), 3)
+
+plt.figure(figsize=(10, 4))
+plt.bar(ticks-0.5, list(survey_completa.xs('Sesgado', level='modalidad').values.ravel()), color=colors[0], align='center')
+plt.bar(ticks+0.5, list(survey_completa.xs('No sesgado', level='modalidad').values.ravel()), color=colors[1], align='center')
+
+plt.legend(['Biased', 'Unbiased'], frameon=True, facecolor='white')
+plt.xticks(ticks=[x for x in range(1, 35, 3)], labels=[f'Q {x}' for x in range(1, len(total_preguntas)+1)], family='Times New Roman', style='italic')
+plt.ylabel('Score', family='Times New Roman', style='italic')
+```
+</details>
+
+<br>The biased group, on average, rated the first six questions higher than the unbiased one; this tendecy was inverted on the second part of the survey.
+<br>The biased group's rating decayed when being exposed to the original ruins accompanied by the AI's reconstruction, while the unbiased group's rating increased; this happened for every question.
+
+### Apendix
+
+#### Source data
+
+##### Figure 1:
 
 ```python
 display(survey_completa.head(12))
@@ -366,20 +403,6 @@ display(survey_completa.head(12))
 
 ##### Figure 2
 
-```python
-box = plt.boxplot(list(survey_completa.values), patch_artist=True, widths=0.5)
-plt.setp(box['boxes'], color='white')
-plt.setp(box['boxes'], edgecolor='black')
-plt.setp(box['medians'], color='red')
-
-plt.xticks(ticks=[x for x in range(1, 7)], labels=[f'Q{x}' for x in range(1, 7)], family='Times New Roman', style='italic')
-plt.ylabel('Score', family='Times New Roman', style='italic')
-
-plt.show()
-```
-
-Source data:
-
 
 ```python
 display(survey_completa.head(10))
@@ -526,24 +549,6 @@ display(survey_completa.head(10))
 
 
 ##### Figure 3
-
-```python
-colors = ['#bf8e8e',  # biased
-          '#979ec9']  # unbiased
-
-ticks = np.arange(1, len(total_preguntas*3), 3)
-
-plt.figure(figsize=(10, 4))
-plt.bar(ticks-0.5, list(survey_completa.xs('Sesgado', level='modalidad').values.ravel()), color=colors[0], align='center')
-plt.bar(ticks+0.5, list(survey_completa.xs('No sesgado', level='modalidad').values.ravel()), color=colors[1], align='center')
-
-plt.legend(['Biased', 'Unbiased'], frameon=True, facecolor='white')
-plt.xticks(ticks=[x for x in range(1, 35, 3)], labels=[f'Q {x}' for x in range(1, len(total_preguntas)+1)], family='Times New Roman', style='italic')
-plt.ylabel('Score', family='Times New Roman', style='italic')
-```
-
-Source data:
-
 
 ```python
 display(survey_completa.head(10))
